@@ -6,9 +6,11 @@ public class Hangman {
     public static void main(String[] args) {
         String language = selectLanguage();
 
+        Messages messages = new Messages(language);
 
+        HangmanGame hangmanGame = new HangmanGame(messages);
 
-
+        hangmanGame.startGame();
     }
 
     public static String selectLanguage(){
@@ -20,22 +22,6 @@ public class Hangman {
                 return (language.equals("e")) ? "english" : "russian";
             } else {
                 System.out.println("Wrong input, try again!");
-            }
-        }
-    }
-
-    public static void startGame(String language, Scanner scanner){
-        if (language.equals("e")){
-            System.out.println("Hi! Do you want to start a new game? (type y for yes or n for no)");
-            while (true) {
-                String answer = scanner.nextLine();
-                if (answer.equals("y")) {
-                    //start game function
-                } else if (answer.equals("n")) {
-                    break;
-                }else{
-                    System.out.println("Wrong input, try again!");
-                }
             }
         }
     }

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Dictionary {
-    List<String> dictionary;
+    private List<String> dictionary;
 
     public Dictionary() {
         dictionary = new ArrayList<>();
