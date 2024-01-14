@@ -19,7 +19,7 @@ public class Dictionary {
                     filter(word -> word.length() > 4).
                     forEach(word -> dictionary.add(word));
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 

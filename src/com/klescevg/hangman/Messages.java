@@ -30,4 +30,8 @@ public class Messages {
             return "Пока!";
         }
     }
+
+    public String getLanguage() {
+        return language;
+    }
 }
