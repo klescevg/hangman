@@ -1,3 +1,5 @@
+package com.klescevg.hangman;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -11,9 +13,9 @@ public class Dictionary {
         dictionary = new ArrayList<>();
     }
 
-    public void loadDictionary() {
+    public void loadDictionary(String dictionaryName) {
         try {
-            Files.lines(Paths.get("russian_nouns.txt")).
+            Files.lines(Paths.get(dictionaryName)).
                     filter(word -> word.length() > 4).
                     forEach(word -> dictionary.add(word));
         } catch (Exception e) {
