@@ -9,9 +9,9 @@ public class Messages {
 
     public String getStartGameMessage() {
         if (language.equals("english")) {
-            return "Hi! Do you want to start a new game? (type 1 for yes or 0 for no)";
+            return "Do you want to start a new game? (type 1 for yes or 0 for no)";
         } else {
-            return "Привет! Хочешь начать новую игру? (введи 1 если да или 0 если нет)";
+            return "Хочешь начать новую игру? (введи 1 если да или 0 если нет)";
         }
     }
 

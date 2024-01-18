@@ -5,9 +5,7 @@ import java.util.Scanner;
 public class Hangman {
     public static void main(String[] args) {
         String language = selectLanguage();
-
         Messages messages = new Messages(language);
-
         HangmanGame hangmanGame = new HangmanGame(messages);
 
         hangmanGame.startGame();

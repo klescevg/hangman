@@ -14,12 +14,14 @@ public class Dictionary {
     }
 
     public void loadDictionary(String dictionaryName) {
-        try {
-            Files.lines(Paths.get(dictionaryName)).
-                    filter(word -> word.length() > 4).
-                    forEach(word -> dictionary.add(word));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        if (dictionary.isEmpty()) {
+            try {
+                Files.lines(Paths.get(dictionaryName)).
+                        filter(word -> word.length() > 4).
+                        forEach(word -> dictionary.add(word));
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
