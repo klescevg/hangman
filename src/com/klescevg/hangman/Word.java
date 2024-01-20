@@ -10,4 +10,7 @@ public class Word {
         this.hiddenWord = hiddenWord;
         revealedLetters = new char[hiddenWord.length()];
     }
+
+    public void printRevealedLetters() {
+    }
 }

@@ -41,8 +41,57 @@ public class HangmanGame {
 
     public void playGame(){
         while (mistakeCount < MAX_MISTAKES){
-
+            printGallows();
+            word.printRevealedLetters();
+            //printMistakes()
+            //enterLetter()
+            //checkPresence()
+            mistakeCount++;
         }
+    }
+
+    public void printGallows(){
+        System.out.println("   _________");
+        System.out.println("   |       |");
+        switch(mistakeCount){
+            case 0:
+                System.out.println("   |");
+                System.out.println("   |");
+                System.out.println("   |");
+                break;
+            case 1:
+                System.out.println("   |       O");
+                System.out.println("   |");
+                System.out.println("   |");
+                break;
+            case 2:
+                System.out.println("   |       O");
+                System.out.println("   |       |");
+                System.out.println("   |");
+                break;
+            case 3:
+                System.out.println("   |       O");
+                System.out.println("   |      /|");
+                System.out.println("   |");
+                break;
+            case 4:
+                System.out.println("   |       O");
+                System.out.println("   |      /|\\");
+                System.out.println("   |");
+                break;
+            case 5:
+                System.out.println("   |       O");
+                System.out.println("   |      /|\\");
+                System.out.println("   |      /");
+                break;
+            case 6:
+                System.out.println("   |       O");
+                System.out.println("   |      /|\\");
+                System.out.println("   |      / \\");
+                break;
+        }
+        System.out.println("___|___");
+
     }
 
     public void initDictionary() {
