@@ -42,6 +42,7 @@ public class HangmanGame {
     public void playGame(){
         while (mistakeCount < MAX_MISTAKES){
             printGallows();
+            System.out.print(messages.getWordMessage());
             word.printRevealedLetters();
             //printMistakes()
             //enterLetter()
@@ -91,7 +92,6 @@ public class HangmanGame {
                 break;
         }
         System.out.println("___|___");
-
     }
 
     public void initDictionary() {

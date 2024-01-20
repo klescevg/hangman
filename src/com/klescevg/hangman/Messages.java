@@ -23,6 +23,14 @@ public class Messages {
         }
     }
 
+    public String getWordMessage(){
+        if(language.equals("english")){
+            return "Word: ";
+        } else{
+            return "Слово: ";
+        }
+    }
+
     public String getByeByeMessage(){
         if(language.equals("english")){
             return "Goodbye!";
