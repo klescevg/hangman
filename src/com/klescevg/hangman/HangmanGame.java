@@ -55,7 +55,23 @@ public class HangmanGame {
         }
     }
 
+    public char readLetter(){
+        Scanner scanner = new Scanner(System.in);
+        String input = "";
 
+        while(true) {
+            System.out.print(messages.getLetterMessage());
+            input = scanner.nextLine();
+
+            if (input.length() == 1){
+                break;
+            }
+
+            System.out.println(messages.getLetterWarningMessage());
+        }
+
+        return input.charAt(0);
+    }
 
     public void printWrongLetters(){
         for (int i = 0; i < mistakeCount; i++) {
