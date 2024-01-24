@@ -40,15 +40,31 @@ public class HangmanGame {
     }
 
     public void playGame(){
+        Scanner scanner = new Scanner(System.in);
         while (mistakeCount < MAX_MISTAKES){
             printGallows();
             System.out.print(messages.getWordMessage());
             word.printRevealedLetters();
-            //printMistakes()
-            //enterLetter()
+
+            System.out.print(messages.getMistakesMessage() + " (" + mistakeCount + "): ");
+            printWrongLetters();
+
+
             //checkPresence()
             mistakeCount++;
         }
+    }
+
+
+
+    public void printWrongLetters(){
+        for (int i = 0; i < mistakeCount; i++) {
+            System.out.print(wrongLetters[i]);
+            if (i < mistakeCount-1){
+                System.out.print(", ");
+            }
+        }
+        System.out.println();
     }
 
     public void printGallows(){

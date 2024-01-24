@@ -31,6 +31,30 @@ public class Messages {
         }
     }
 
+    public String getMistakesMessage(){
+        if(language.equals("english")){
+            return "Mistakes";
+        } else{
+            return "Ошибки";
+        }
+    }
+
+    public String getLetterMessage(){
+        if(language.equals("english")){
+            return "Letter: ";
+        } else{
+            return "Буква: ";
+        }
+    }
+
+    public String getLetterWarningMessage(){
+        if(language.equals("english")){
+            return "Enter a letter!";
+        } else{
+            return "Введите букву!";
+        }
+    }
+
     public String getByeByeMessage(){
         if(language.equals("english")){
             return "Goodbye!";
