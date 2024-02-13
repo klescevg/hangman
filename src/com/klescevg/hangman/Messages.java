@@ -55,6 +55,14 @@ public class Messages {
         }
     }
 
+    public String getAlreadyEnteredLetterMessage(){
+        if(language.equals("english")){
+            return "This letter was already entered!";
+        } else{
+            return "Вы уже вводили эту букву!";
+        }
+    }
+
     public String getByeByeMessage(){
         if(language.equals("english")){
             return "Goodbye!";

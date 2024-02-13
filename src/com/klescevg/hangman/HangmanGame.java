@@ -49,11 +49,18 @@ public class HangmanGame {
             System.out.print(messages.getMistakesMessage() + " (" + mistakeCount + "): ");
             printWrongLetters();
 
-
-            //checkPresence()
-            mistakeCount++;
+            char letter = readLetter();
+            //checkLetter(letter);
         }
     }
+
+/*    public void checkLetter(char letter){
+        if (word.checkPresence(letter)){
+
+        } else{
+            mistakeCount++;
+        }
+    }*/
 
     public char readLetter(){
         Scanner scanner = new Scanner(System.in);
@@ -63,14 +70,27 @@ public class HangmanGame {
             System.out.print(messages.getLetterMessage());
             input = scanner.nextLine();
 
-            if (input.length() == 1){
-                break;
+            if (input.length() != 1){
+                System.out.println(messages.getLetterWarningMessage());
+                continue;
+            } else if (checkIfAlreadyEntered(input.charAt(0)) || word.checkIfAlreadyRevealed(input.charAt(0))) {
+                System.out.println(messages.getAlreadyEnteredLetterMessage());
+                continue;
             }
 
-            System.out.println(messages.getLetterWarningMessage());
+            break;
         }
 
         return input.charAt(0);
+    }
+
+    public boolean checkIfAlreadyEntered(char letter){
+        for (char wrongLetter : wrongLetters) {
+            if (wrongLetter == letter) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void printWrongLetters(){

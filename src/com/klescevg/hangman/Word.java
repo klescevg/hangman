@@ -22,6 +22,15 @@ public class Word {
         System.out.println();
     }
 
+    public boolean checkIfAlreadyRevealed(char letter){
+        for (char revealedLetter : revealedLetters) {
+            if (revealedLetter == letter && letter != '_') {
+                return true;
+            }
+        }
+        return false;
+    }
+
 /*    public boolean checkPresence(char c) {
         for (int i = 0; i < hiddenWord.length(); i++) {
             if (hiddenWord.charAt(i) == c) {
