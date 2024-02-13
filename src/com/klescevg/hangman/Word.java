@@ -1,5 +1,7 @@
 package com.klescevg.hangman;
 
+import java.util.Locale;
+
 public class Word {
     private String hiddenWord;
     private char[] revealedLetters;
@@ -35,15 +37,12 @@ public class Word {
         return hiddenWord.contains(String.valueOf(letter));
     }
 
-/*    public void addRevealedLetter(char letter){
-        boolean result = false;
+    public void addRevealedLetter(char letter){
         for (int i = 0; i < hiddenWord.length(); i++) {
             if (hiddenWord.charAt(i) == letter) {
                 revealedLetters[i] = letter;
-                result = true;
             }
         }
-        return result;
-    }*/
+    }
 }
 

@@ -50,13 +50,14 @@ public class HangmanGame {
             printWrongLetters();
 
             char letter = readLetter();
-            //checkLetter(letter);
+            checkLetter(letter);
+            System.out.println();
         }
     }
 
     public void checkLetter(char letter){
         if (word.checkPresence(letter)){
-
+            word.addRevealedLetter(letter);
         } else{
             wrongLetters[mistakeCount] = letter;
             mistakeCount++;
@@ -69,7 +70,7 @@ public class HangmanGame {
 
         while(true) {
             System.out.print(messages.getLetterMessage());
-            input = scanner.nextLine();
+            input = scanner.nextLine().toLowerCase();
 
             if (input.length() != 1){
                 System.out.println(messages.getLetterWarningMessage());
