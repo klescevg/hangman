@@ -54,13 +54,14 @@ public class HangmanGame {
         }
     }
 
-/*    public void checkLetter(char letter){
+    public void checkLetter(char letter){
         if (word.checkPresence(letter)){
 
         } else{
+            wrongLetters[mistakeCount] = letter;
             mistakeCount++;
         }
-    }*/
+    }
 
     public char readLetter(){
         Scanner scanner = new Scanner(System.in);

@@ -31,12 +31,19 @@ public class Word {
         return false;
     }
 
-/*    public boolean checkPresence(char c) {
+    public boolean checkPresence(char letter) {
+        return hiddenWord.contains(String.valueOf(letter));
+    }
+
+/*    public void addRevealedLetter(char letter){
+        boolean result = false;
         for (int i = 0; i < hiddenWord.length(); i++) {
-            if (hiddenWord.charAt(i) == c) {
-                revealedLetters[i] = c;
+            if (hiddenWord.charAt(i) == letter) {
+                revealedLetters[i] = letter;
+                result = true;
             }
         }
+        return result;
     }*/
 }
 
