@@ -39,7 +39,7 @@ public class HangmanGame {
         } while (true);
     }
 
-    public void startNewGame() {
+    private void startNewGame() {
         word.setWord(dictionary.getRandomWord());
         mistakeCount = 0;
 
@@ -51,7 +51,7 @@ public class HangmanGame {
         }
     }
 
-    public void printGameState() {
+    private void printGameState() {
         printGallows();
         System.out.print(messageManager.getWordMessage());
         word.printRevealedLetters();
@@ -60,26 +60,7 @@ public class HangmanGame {
         printWrongLetters();
     }
 
-    public void checkWin() {
-        System.out.println();
-        if (mistakeCount == MAX_MISTAKES) {
-            System.out.println(messageManager.getLossMessage());
-        } else if (word.checkIfHiddenWordIsRevealed()) {
-            System.out.println(messageManager.getWinMessage());
-            mistakeCount = MAX_MISTAKES;
-        }
-    }
-
-    public void checkLetter(char letter) {
-        if (word.checkPresence(letter)) {
-            word.addRevealedLetter(letter);
-        } else {
-            wrongLetters[mistakeCount] = letter;
-            mistakeCount++;
-        }
-    }
-
-    public char readLetter() {
+    private char readLetter() {
         String input = "";
 
         while (true) {
@@ -100,7 +81,26 @@ public class HangmanGame {
         return input.charAt(0);
     }
 
-    public boolean checkIfLetterIsAlreadyWrong(char letter) {
+    private void checkLetter(char letter) {
+        if (word.checkLetterPresence(letter)) {
+            word.addRevealedLetter(letter);
+        } else {
+            wrongLetters[mistakeCount] = letter;
+            mistakeCount++;
+        }
+    }
+
+    private void checkWin() {
+        System.out.println();
+        if (mistakeCount == MAX_MISTAKES) {
+            System.out.println(messageManager.getLossMessage());
+        } else if (word.checkIfHiddenWordIsRevealed()) {
+            System.out.println(messageManager.getWinMessage());
+            mistakeCount = MAX_MISTAKES;
+        }
+    }
+
+    private boolean checkIfLetterIsAlreadyWrong(char letter) {
         for (char wrongLetter : wrongLetters) {
             if (wrongLetter == letter) {
                 return true;
@@ -109,7 +109,7 @@ public class HangmanGame {
         return false;
     }
 
-    public void printWrongLetters() {
+    private void printWrongLetters() {
         for (int i = 0; i < mistakeCount; i++) {
             System.out.print(wrongLetters[i]);
             if (i < mistakeCount - 1) {
@@ -119,7 +119,7 @@ public class HangmanGame {
         System.out.println();
     }
 
-    public void printGallows() {
+    private void printGallows() {
         System.out.println("   _________");
         System.out.println("   |       |");
         switch (mistakeCount) {
@@ -162,7 +162,7 @@ public class HangmanGame {
         System.out.println("___|___");
     }
 
-    public void initDictionary() {
+    private void initDictionary() {
         dictionary = new Dictionary();
         String fileName;
 

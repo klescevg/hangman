@@ -28,7 +28,7 @@ public class Word {
         return false;
     }
 
-    public boolean checkPresence(char letter) {
+    public boolean checkLetterPresence(char letter) {
         return hiddenWord.contains(String.valueOf(letter));
     }
 
