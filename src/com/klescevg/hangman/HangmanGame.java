@@ -20,12 +20,11 @@ public class HangmanGame {
 
     public void startGame() {
         System.out.println(messages.getStartGameMessage());
-
+        initDictionary();
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String answer = scanner.nextLine();
             if (answer.equals("1")) {
-                initDictionary();
                 word.setWord(dictionary.getRandomWord());
                 playGame();
 
@@ -39,9 +38,10 @@ public class HangmanGame {
         }
     }
 
-    public void playGame(){
+    public void playGame() {
         Scanner scanner = new Scanner(System.in);
-        while (mistakeCount < MAX_MISTAKES){
+
+        while (mistakeCount < MAX_MISTAKES) {
             printGallows();
             System.out.print(messages.getWordMessage());
             word.printRevealedLetters();
@@ -52,37 +52,39 @@ public class HangmanGame {
             char letter = readLetter();
             checkLetter(letter);
             checkWin();
-            System.out.println();
         }
+
+        mistakeCount = 0;
     }
 
-    public void checkWin(){
-        if (mistakeCount == MAX_MISTAKES){
+    public void checkWin() {
+        System.out.println();
+        if (mistakeCount == MAX_MISTAKES) {
             System.out.println(messages.getLossMessage());
-        } else if (word.checkIfHiddenWordIsRevealed()){
+        } else if (word.checkIfHiddenWordIsRevealed()) {
             System.out.println(messages.getWinMessage());
             mistakeCount = MAX_MISTAKES;
         }
     }
 
-    public void checkLetter(char letter){
-        if (word.checkPresence(letter)){
+    public void checkLetter(char letter) {
+        if (word.checkPresence(letter)) {
             word.addRevealedLetter(letter);
-        } else{
+        } else {
             wrongLetters[mistakeCount] = letter;
             mistakeCount++;
         }
     }
 
-    public char readLetter(){
+    public char readLetter() {
         Scanner scanner = new Scanner(System.in);
         String input = "";
 
-        while(true) {
+        while (true) {
             System.out.print(messages.getLetterMessage());
             input = scanner.nextLine().toLowerCase();
 
-            if (input.length() != 1){
+            if (input.length() != 1) {
                 System.out.println(messages.getLetterWarningMessage());
                 continue;
             } else if (checkIfAlreadyEntered(input.charAt(0)) || word.checkIfLetterIsAlreadyRevealed(input.charAt(0))) {
@@ -96,7 +98,7 @@ public class HangmanGame {
         return input.charAt(0);
     }
 
-    public boolean checkIfAlreadyEntered(char letter){
+    public boolean checkIfAlreadyEntered(char letter) {
         for (char wrongLetter : wrongLetters) {
             if (wrongLetter == letter) {
                 return true;
@@ -105,20 +107,20 @@ public class HangmanGame {
         return false;
     }
 
-    public void printWrongLetters(){
+    public void printWrongLetters() {
         for (int i = 0; i < mistakeCount; i++) {
             System.out.print(wrongLetters[i]);
-            if (i < mistakeCount-1){
+            if (i < mistakeCount - 1) {
                 System.out.print(", ");
             }
         }
         System.out.println();
     }
 
-    public void printGallows(){
+    public void printGallows() {
         System.out.println("   _________");
         System.out.println("   |       |");
-        switch(mistakeCount){
+        switch (mistakeCount) {
             case 0:
                 System.out.println("   |");
                 System.out.println("   |");
