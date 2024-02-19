@@ -51,7 +51,17 @@ public class HangmanGame {
 
             char letter = readLetter();
             checkLetter(letter);
+            checkWin();
             System.out.println();
+        }
+    }
+
+    public void checkWin(){
+        if (mistakeCount == MAX_MISTAKES){
+            System.out.println(messages.getLossMessage());
+        } else if (word.checkIfHiddenWordIsRevealed()){
+            System.out.println(messages.getWinMessage());
+            mistakeCount = MAX_MISTAKES;
         }
     }
 
@@ -75,7 +85,7 @@ public class HangmanGame {
             if (input.length() != 1){
                 System.out.println(messages.getLetterWarningMessage());
                 continue;
-            } else if (checkIfAlreadyEntered(input.charAt(0)) || word.checkIfAlreadyRevealed(input.charAt(0))) {
+            } else if (checkIfAlreadyEntered(input.charAt(0)) || word.checkIfLetterIsAlreadyRevealed(input.charAt(0))) {
                 System.out.println(messages.getAlreadyEnteredLetterMessage());
                 continue;
             }

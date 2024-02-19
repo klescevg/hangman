@@ -11,7 +11,7 @@ public class Messages {
         if (language.equals("english")) {
             return "Do you want to start a new game? (type 1 for yes or 0 for no)";
         } else {
-            return "Хочешь начать новую игру? (введи 1 если да или 0 если нет)";
+            return "Вы хотите начать новую игру? (введите 1 если да или 0 если нет)";
         }
     }
 
@@ -19,7 +19,7 @@ public class Messages {
         if(language.equals("english")){
             return "Wrong input, try again!";
         } else{
-            return "Неправильный символ, попробуй ещё раз!";
+            return "Неправильный символ, попробуйте ещё раз!";
         }
     }
 
@@ -63,11 +63,27 @@ public class Messages {
         }
     }
 
+    public String getLossMessage(){
+        if(language.equals("english")){
+            return "You lose!";
+        } else{
+            return "Вы проиграли!";
+        }
+    }
+
+    public String getWinMessage(){
+        if(language.equals("english")){
+            return "You won!";
+        } else{
+            return "Вы выиграли!";
+        }
+    }
+
     public String getByeByeMessage(){
         if(language.equals("english")){
             return "Goodbye!";
         } else{
-            return "Пока!";
+            return "До свидания!";
         }
     }
 
