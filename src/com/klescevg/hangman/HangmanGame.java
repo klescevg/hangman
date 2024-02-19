@@ -82,12 +82,12 @@ public class HangmanGame {
 
         while (true) {
             System.out.print(messages.getLetterMessage());
-            input = scanner.nextLine().toLowerCase();
+            input = scanner.nextLine();
 
-            if (input.length() != 1) {
+            if (input.length() != 1 || !Character.isLowerCase(input.charAt(0))) {
                 System.out.println(messages.getLetterWarningMessage());
                 continue;
-            } else if (checkIfAlreadyEntered(input.charAt(0)) || word.checkIfLetterIsAlreadyRevealed(input.charAt(0))) {
+            } else if (checkIfLetterIsAlreadyWrong(input.charAt(0)) || word.checkIfLetterIsAlreadyRevealed(input.charAt(0))) {
                 System.out.println(messages.getAlreadyEnteredLetterMessage());
                 continue;
             }
@@ -98,7 +98,7 @@ public class HangmanGame {
         return input.charAt(0);
     }
 
-    public boolean checkIfAlreadyEntered(char letter) {
+    public boolean checkIfLetterIsAlreadyWrong(char letter) {
         for (char wrongLetter : wrongLetters) {
             if (wrongLetter == letter) {
                 return true;

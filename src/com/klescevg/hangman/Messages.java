@@ -49,9 +49,9 @@ public class Messages {
 
     public String getLetterWarningMessage(){
         if(language.equals("english")){
-            return "Enter a letter!";
+            return "Enter a lowercase letter!";
         } else{
-            return "Введите букву!";
+            return "Введите строчную букву!";
         }
     }
 
