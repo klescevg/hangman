@@ -3,6 +3,7 @@ package com.klescevg.hangman;
 import java.util.Scanner;
 
 public class HangmanGame {
+    private Scanner scanner;
     private Messages messages;
     private Dictionary dictionary;
     private Word word;
@@ -11,6 +12,7 @@ public class HangmanGame {
     private final int MAX_MISTAKES = 6;
 
     public HangmanGame(Messages messages) {
+        scanner = new Scanner(System.in);
         this.messages = messages;
         dictionary = new Dictionary();
         word = new Word();
@@ -21,8 +23,7 @@ public class HangmanGame {
     public void startGame() {
         System.out.println(messages.getStartGameMessage());
         initDictionary();
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
+        do {
             String answer = scanner.nextLine();
             if (answer.equals("1")) {
                 word.setWord(dictionary.getRandomWord());
@@ -35,26 +36,27 @@ public class HangmanGame {
             } else {
                 System.out.println(messages.getWrongInputMessage());
             }
-        }
+        } while (true);
     }
 
     public void playGame() {
-        Scanner scanner = new Scanner(System.in);
-
         while (mistakeCount < MAX_MISTAKES) {
-            printGallows();
-            System.out.print(messages.getWordMessage());
-            word.printRevealedLetters();
-
-            System.out.print(messages.getMistakesMessage() + " (" + mistakeCount + "): ");
-            printWrongLetters();
-
+            printGameState();
             char letter = readLetter();
             checkLetter(letter);
             checkWin();
         }
 
         mistakeCount = 0;
+    }
+
+    private void printGameState() {
+        printGallows();
+        System.out.print(messages.getWordMessage());
+        word.printRevealedLetters();
+
+        System.out.print(messages.getMistakesMessage() + " (" + mistakeCount + "): ");
+        printWrongLetters();
     }
 
     public void checkWin() {
@@ -77,7 +79,6 @@ public class HangmanGame {
     }
 
     public char readLetter() {
-        Scanner scanner = new Scanner(System.in);
         String input = "";
 
         while (true) {
@@ -121,41 +122,41 @@ public class HangmanGame {
         System.out.println("   _________");
         System.out.println("   |       |");
         switch (mistakeCount) {
-            case 0:
+            case 0 -> {
                 System.out.println("   |");
                 System.out.println("   |");
                 System.out.println("   |");
-                break;
-            case 1:
+            }
+            case 1 -> {
                 System.out.println("   |       O");
                 System.out.println("   |");
                 System.out.println("   |");
-                break;
-            case 2:
+            }
+            case 2 -> {
                 System.out.println("   |       O");
                 System.out.println("   |       |");
                 System.out.println("   |");
-                break;
-            case 3:
+            }
+            case 3 -> {
                 System.out.println("   |       O");
                 System.out.println("   |      /|");
                 System.out.println("   |");
-                break;
-            case 4:
+            }
+            case 4 -> {
                 System.out.println("   |       O");
                 System.out.println("   |      /|\\");
                 System.out.println("   |");
-                break;
-            case 5:
+            }
+            case 5 -> {
                 System.out.println("   |       O");
                 System.out.println("   |      /|\\");
                 System.out.println("   |      /");
-                break;
-            case 6:
+            }
+            case 6 -> {
                 System.out.println("   |       O");
                 System.out.println("   |      /|\\");
                 System.out.println("   |      / \\");
-                break;
+            }
         }
         System.out.println("___|___");
     }
