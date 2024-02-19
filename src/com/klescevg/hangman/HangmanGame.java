@@ -3,68 +3,69 @@ package com.klescevg.hangman;
 import java.util.Scanner;
 
 public class HangmanGame {
+    private static final String START_GAME_OPTION = "1";
+    private static final String EXIT_GAME_OPTION = "0";
+    private static final int MAX_MISTAKES = 6;
     private Scanner scanner;
-    private Messages messages;
+    private MessageManager messageManager;
     private Dictionary dictionary;
     private Word word;
     private int mistakeCount;
     private char[] wrongLetters;
-    private final int MAX_MISTAKES = 6;
 
-    public HangmanGame(Messages messages) {
+    public HangmanGame(MessageManager messageManager) {
         scanner = new Scanner(System.in);
-        this.messages = messages;
-        dictionary = new Dictionary();
+        this.messageManager = messageManager;
+        initDictionary();
         word = new Word();
         mistakeCount = 0;
         wrongLetters = new char[MAX_MISTAKES];
     }
 
-    public void startGame() {
-        System.out.println(messages.getStartGameMessage());
-        initDictionary();
+    public void initGame() {
+        System.out.println(messageManager.getStartGameMessage());
+
         do {
             String answer = scanner.nextLine();
-            if (answer.equals("1")) {
-                word.setWord(dictionary.getRandomWord());
-                playGame();
 
-                System.out.println(messages.getStartGameMessage());
-            } else if (answer.equals("0")) {
-                System.out.println(messages.getByeByeMessage());
+            if (answer.equals(START_GAME_OPTION)) {
+                startNewGame();
+            } else if (answer.equals(EXIT_GAME_OPTION)) {
+                System.out.println(messageManager.getByeByeMessage());
                 break;
             } else {
-                System.out.println(messages.getWrongInputMessage());
+                System.out.println(messageManager.getWrongInputMessage());
             }
         } while (true);
     }
 
-    public void playGame() {
+    public void startNewGame() {
+        word.setWord(dictionary.getRandomWord());
+        mistakeCount = 0;
+
         while (mistakeCount < MAX_MISTAKES) {
             printGameState();
             char letter = readLetter();
             checkLetter(letter);
             checkWin();
         }
-
-        mistakeCount = 0;
     }
 
-    private void printGameState() {
+    public void printGameState() {
         printGallows();
-        System.out.print(messages.getWordMessage());
+        System.out.print(messageManager.getWordMessage());
         word.printRevealedLetters();
 
-        System.out.print(messages.getMistakesMessage() + " (" + mistakeCount + "): ");
+        System.out.print(messageManager.getMistakesMessage() + " (" + mistakeCount + "): ");
         printWrongLetters();
     }
 
     public void checkWin() {
         System.out.println();
         if (mistakeCount == MAX_MISTAKES) {
-            System.out.println(messages.getLossMessage());
+            System.out.println(messageManager.getLossMessage());
         } else if (word.checkIfHiddenWordIsRevealed()) {
-            System.out.println(messages.getWinMessage());
+            System.out.println(messageManager.getWinMessage());
             mistakeCount = MAX_MISTAKES;
         }
     }
@@ -82,14 +83,14 @@ public class HangmanGame {
         String input = "";
 
         while (true) {
-            System.out.print(messages.getLetterMessage());
+            System.out.print(messageManager.getLetterMessage());
             input = scanner.nextLine();
 
             if (input.length() != 1 || !Character.isLowerCase(input.charAt(0))) {
-                System.out.println(messages.getLetterWarningMessage());
+                System.out.println(messageManager.getLetterWarningMessage());
                 continue;
             } else if (checkIfLetterIsAlreadyWrong(input.charAt(0)) || word.checkIfLetterIsAlreadyRevealed(input.charAt(0))) {
-                System.out.println(messages.getAlreadyEnteredLetterMessage());
+                System.out.println(messageManager.getAlreadyEnteredLetterMessage());
                 continue;
             }
 
@@ -162,9 +163,10 @@ public class HangmanGame {
     }
 
     public void initDictionary() {
+        dictionary = new Dictionary();
         String fileName;
 
-        if (messages.getLanguage().equals("english")) {
+        if (messageManager.getLanguage() == Language.ENGLISH) {
             fileName = "english_nouns.txt";
         } else {
             fileName = "russian_nouns.txt";

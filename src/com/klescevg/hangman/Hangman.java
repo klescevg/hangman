@@ -3,21 +3,25 @@ package com.klescevg.hangman;
 import java.util.Scanner;
 
 public class Hangman {
-    public static void main(String[] args) {
-        String language = selectLanguage();
-        Messages messages = new Messages(language);
-        HangmanGame hangmanGame = new HangmanGame(messages);
+    private static final String ENGLISH_OPTION = "e";
+    private static final String RUSSIAN_OPTION = "r";
 
-        hangmanGame.startGame();
+    public static void main(String[] args) {
+        Language language = selectLanguage();
+        MessageManager messageManager = new MessageManager(language);
+        HangmanGame hangmanGame = new HangmanGame(messageManager);
+
+        hangmanGame.initGame();
     }
 
-    public static String selectLanguage(){
+    public static Language selectLanguage(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to Hangman game. Choose a language (type e for english or r for russian).");
+
         while(true) {
             String language = scanner.nextLine();
-            if (language.equals("e") || language.equals("r")) {
-                return (language.equals("e")) ? "english" : "russian";
+            if (language.equals(ENGLISH_OPTION) || language.equals(RUSSIAN_OPTION)) {
+                return (language.equals(ENGLISH_OPTION)) ? Language.ENGLISH : Language.RUSSIAN;
             } else {
                 System.out.println("Wrong input, try again!");
             }
