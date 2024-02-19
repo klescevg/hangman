@@ -1,5 +1,8 @@
 package com.klescevg.hangman;
 
+/**
+ * The Language enum represents the supported languages for the Hangman game.
+ */
 public enum Language {
     ENGLISH("english"),
     RUSSIAN("russian");

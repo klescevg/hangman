@@ -1,5 +1,8 @@
 package com.klescevg.hangman;
 
+/**
+ * The MessageManager class is responsible for providing messages based on the selected language.
+ */
 public class MessageManager {
     private Language language;
 

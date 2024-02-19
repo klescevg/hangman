@@ -2,6 +2,10 @@ package com.klescevg.hangman;
 
 import java.util.Scanner;
 
+/**
+ * The Hangman class serves as the entry point for the Hangman game.
+ * It allows users to select a language and initiates the HangmanGame.
+ */
 public class Hangman {
     private static final String ENGLISH_OPTION = "e";
     private static final String RUSSIAN_OPTION = "r";
@@ -14,9 +18,14 @@ public class Hangman {
         hangmanGame.initGame();
     }
 
+    /**
+     * Prompts the user to select a language for the Hangman game.
+     *
+     * @return The selected language represented by the Language enum (ENGLISH or RUSSIAN).
+     */
     public static Language selectLanguage(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to Hangman game. Choose a language (type e for english or r for russian).");
+        System.out.println("Welcome to the Hangman game! Choose a language (type e for english or r for russian).");
 
         while(true) {
             String language = scanner.nextLine();

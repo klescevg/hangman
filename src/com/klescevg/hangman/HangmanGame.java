@@ -2,6 +2,9 @@ package com.klescevg.hangman;
 
 import java.util.Scanner;
 
+/**
+ * The HangmanGame class represents the main logic for the Hangman game.
+ */
 public class HangmanGame {
     private static final String START_GAME_OPTION = "1";
     private static final String EXIT_GAME_OPTION = "0";
@@ -22,6 +25,9 @@ public class HangmanGame {
         wrongLetters = new char[MAX_MISTAKES];
     }
 
+    /**
+     * Initializes the Hangman game, prompting the user to start a new game or exit.
+     */
     public void initGame() {
         System.out.println(messageManager.getStartGameMessage());
 
@@ -39,6 +45,9 @@ public class HangmanGame {
         } while (true);
     }
 
+    /**
+     * Starts a new game by setting up the word and managing user input and game progression.
+     */
     private void startNewGame() {
         word.setWord(dictionary.getRandomWord());
         mistakeCount = 0;
@@ -51,6 +60,9 @@ public class HangmanGame {
         }
     }
 
+    /**
+     * Prints the current game state, including the gallows, revealed letters, and mistakes.
+     */
     private void printGameState() {
         printGallows();
         System.out.print(messageManager.getWordMessage());
@@ -60,6 +72,9 @@ public class HangmanGame {
         printWrongLetters();
     }
 
+    /**
+     * Reads a letter from the user input, validating it, and ensuring it hasn't been entered before.
+     */
     private char readLetter() {
         String input = "";
 
@@ -70,7 +85,7 @@ public class HangmanGame {
             if (input.length() != 1 || !Character.isLowerCase(input.charAt(0))) {
                 System.out.println(messageManager.getLetterWarningMessage());
                 continue;
-            } else if (checkIfLetterIsAlreadyWrong(input.charAt(0)) || word.checkIfLetterIsAlreadyRevealed(input.charAt(0))) {
+            } else if (isAlreadyEntered(input.charAt(0))) {
                 System.out.println(messageManager.getAlreadyEnteredLetterMessage());
                 continue;
             }
@@ -81,6 +96,9 @@ public class HangmanGame {
         return input.charAt(0);
     }
 
+    /**
+     * Checks if the entered letter is correct, updates the game state, and handles mistakes.
+     */
     private void checkLetter(char letter) {
         if (word.checkLetterPresence(letter)) {
             word.addRevealedLetter(letter);
@@ -90,6 +108,9 @@ public class HangmanGame {
         }
     }
 
+    /**
+     * Checks if the game is won or lost, displaying appropriate messages.
+     */
     private void checkWin() {
         System.out.println();
         if (mistakeCount == MAX_MISTAKES) {
@@ -100,6 +121,16 @@ public class HangmanGame {
         }
     }
 
+    /**
+     * Checks if the letter has already been entered.
+     */
+    private boolean isAlreadyEntered(char letter){
+        return checkIfLetterIsAlreadyWrong(letter) || word.checkIfLetterIsAlreadyRevealed(letter);
+    }
+
+    /**
+     * Checks if the letter is present among already entered wrong letters.
+     */
     private boolean checkIfLetterIsAlreadyWrong(char letter) {
         for (char wrongLetter : wrongLetters) {
             if (wrongLetter == letter) {
@@ -109,6 +140,9 @@ public class HangmanGame {
         return false;
     }
 
+    /**
+     * Prints the list of wrong letters that have already been entered.
+     */
     private void printWrongLetters() {
         for (int i = 0; i < mistakeCount; i++) {
             System.out.print(wrongLetters[i]);
@@ -119,6 +153,9 @@ public class HangmanGame {
         System.out.println();
     }
 
+    /**
+     * Prints the gallows based on the current mistake count.
+     */
     private void printGallows() {
         System.out.println("   _________");
         System.out.println("   |       |");
@@ -162,6 +199,9 @@ public class HangmanGame {
         System.out.println("___|___");
     }
 
+    /**
+     * Initializes the game dictionary based on the selected language.
+     */
     private void initDictionary() {
         dictionary = new Dictionary();
         String fileName;
@@ -175,3 +215,4 @@ public class HangmanGame {
         dictionary.loadDictionary(fileName);
     }
 }
+
