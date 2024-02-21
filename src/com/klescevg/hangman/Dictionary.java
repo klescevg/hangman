@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The Dictionary class manages the word dictionary used in the Hangman game
+ */
 public class Dictionary {
     private List<String> dictionary;
 
@@ -13,6 +16,9 @@ public class Dictionary {
         dictionary = new ArrayList<>();
     }
 
+    /**
+     * Loads a dictionary from the specified file, filtering words based on a minimum length of 5 characters.
+     */
     public void loadDictionary(String dictionaryName) {
         if (dictionary.isEmpty()) {
             try {
@@ -25,6 +31,9 @@ public class Dictionary {
         }
     }
 
+    /**
+     * Retrieves a random word from the loaded dictionary.
+     */
     public String getRandomWord(){
         if(!dictionary.isEmpty()){
             Random random = new Random();

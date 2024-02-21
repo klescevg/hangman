@@ -100,7 +100,7 @@ public class HangmanGame {
      * Checks if the entered letter is correct, updates the game state, and handles mistakes.
      */
     private void checkLetter(char letter) {
-        if (word.checkLetterPresence(letter)) {
+        if (word.isLetterPresent(letter)) {
             word.addRevealedLetter(letter);
         } else {
             wrongLetters[mistakeCount] = letter;
@@ -109,13 +109,13 @@ public class HangmanGame {
     }
 
     /**
-     * Checks if the game is won or lost, displaying appropriate messages.
+     * Checks if the game is won or lost.
      */
     private void checkWin() {
         System.out.println();
         if (mistakeCount == MAX_MISTAKES) {
             System.out.println(messageManager.getLossMessage());
-        } else if (word.checkIfHiddenWordIsRevealed()) {
+        } else if (word.isHiddenWordRevealed()) {
             System.out.println(messageManager.getWinMessage());
             mistakeCount = MAX_MISTAKES;
         }
@@ -125,13 +125,13 @@ public class HangmanGame {
      * Checks if the letter has already been entered.
      */
     private boolean isAlreadyEntered(char letter){
-        return checkIfLetterIsAlreadyWrong(letter) || word.checkIfLetterIsAlreadyRevealed(letter);
+        return isLetterAlreadyWrong(letter) || word.isLetterAlreadyRevealed(letter);
     }
 
     /**
      * Checks if the letter is present among already entered wrong letters.
      */
-    private boolean checkIfLetterIsAlreadyWrong(char letter) {
+    private boolean isLetterAlreadyWrong(char letter) {
         for (char wrongLetter : wrongLetters) {
             if (wrongLetter == letter) {
                 return true;
