@@ -1,7 +1,7 @@
 # Hangman Game
 
 ## Introduction
-Welcome to the Hangman game project. This version of the classic word guessing game is designed to run in command-line interface. Challenge yourself to guess the word before your man gets hanged!
+Welcome to the Hangman game project. This version of the classic word-guessing game is designed to run in command-line interface. Challenge yourself to guess the word before your man gets hanged!
 
 ## Features
 - Possibility to select a language (English/Russian).
@@ -12,7 +12,7 @@ Welcome to the Hangman game project. This version of the classic word guessing g
 
 
 ## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will allow you to get a copy of the project and run it on your local machine.
 
 ### Installing
 1. Clone the repository:
