@@ -17,4 +17,19 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 1. Clone the repository:
 ```bash
-git clone [repository URL]
+git clone https://github.com/klescevg/hangman.git
+```
+2. Navigate to the Project Directory:
+```bash
+cd hangman/
+```
+4. Compile project:
+```bash
+javac -d bin src/com/klescevg/hangman/*.java
+```
+6. Run main class:
+```bash
+java -cp bin com.klescevg.hangman.Hangman
+```
+
+
