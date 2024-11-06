@@ -9,6 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 sh '''
+                    ls -la
                     java --version
                 '''
                 // Clone the repository
