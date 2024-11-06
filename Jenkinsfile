@@ -6,14 +6,15 @@ pipeline {
         }
     }
     stages {
-
         stage('Checkout') {
             steps {
+                sh 'ls'
+                sh 'java --version'
                 // Clone the repository
                 //git 'https://github.com/klescevg/hangman.git'
             }
         }
-/*
+        /*
         stage('Build') {
             steps {
                 // Compile the project
