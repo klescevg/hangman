@@ -8,8 +8,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                sh 'ls'
-                sh 'java --version'
+                sh '''
+                    java --version
+                '''
                 // Clone the repository
                 //git 'https://github.com/klescevg/hangman.git'
             }
