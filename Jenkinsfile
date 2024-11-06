@@ -6,14 +6,14 @@ pipeline {
         }
     }
     stages {
-        /*
+
         stage('Checkout') {
             steps {
                 // Clone the repository
-                git 'https://github.com/klescevg/hangman.git'
+                //git 'https://github.com/klescevg/hangman.git'
             }
         }
-
+/*
         stage('Build') {
             steps {
                 // Compile the project
