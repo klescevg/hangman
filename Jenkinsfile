@@ -5,7 +5,7 @@ pipeline {
         }
     }
     stages {
-        stage('Checkout') {
+        stage('Check') {
             steps {
                 sh '''
                     ls -la
@@ -20,13 +20,14 @@ pipeline {
                 sh 'javac -d bin src/com/klescevg/hangman/*.java'
             }
         }
+        /*
         stage('Run') {
             steps {
                 // Run the Hangman game
                 sh 'java -cp bin com.klescevg.hangman.Hangman'
             }
         }
-
+        */
     }
     post {
         always {
