@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'openjdk:11' // Use the same base image as in Dockerfile
+            image 'openjdk:17' // Use the same base image as in Dockerfile
         }
     }
     stages {
