@@ -29,7 +29,7 @@ pipeline {
         stage('Run') {
             steps {
                 // Run the Hangman game
-                sh 'java -D app.version=${APP_VERSION} -cp bin com.klescevg.hangman.Hangman'
+                sh 'java -Dapp.version=${APP_VERSION} -cp bin com.klescevg.hangman.Hangman'
             }
         }
 
