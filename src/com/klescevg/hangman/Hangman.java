@@ -25,8 +25,10 @@ public class Hangman {
      */
     public static Language selectLanguage(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to the Hangman game! Choose a language (type e for english or r for russian).");
-
+        String appVersion = System.getProperty("app.version", "unknown");
+        System.out.println("Welcome to the Hangman game!");
+        System.out.println("Application version: " + appVersion);
+        System.out.println("Choose a language (type e for english or r for russian).");
         while(true) {
             String language = scanner.nextLine();
             if (language.equals(ENGLISH_OPTION) || language.equals(RUSSIAN_OPTION)) {

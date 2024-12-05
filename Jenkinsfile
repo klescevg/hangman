@@ -4,6 +4,11 @@ pipeline {
             image 'openjdk:17' // Use the same base image as in Dockerfile
         }
     }
+
+    environment {
+        APP_VERSION = "1.0.$BUILD_ID"
+    }
+
     stages {
         stage('Check') {
             steps {
@@ -20,14 +25,14 @@ pipeline {
                 sh 'javac -d bin src/com/klescevg/hangman/*.java'
             }
         }
-        /*
+
         stage('Run') {
             steps {
                 // Run the Hangman game
-                sh 'java -cp bin com.klescevg.hangman.Hangman'
+                sh 'java -D app.version=${APP_VERSION} -cp bin com.klescevg.hangman.Hangman'
             }
         }
-        */
+
     }
     post {
         always {
